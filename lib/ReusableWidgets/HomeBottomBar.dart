@@ -19,24 +19,26 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      selectedItemColor: Theme.of(context).colorScheme.onBackground,
+      unselectedItemColor: Theme.of(context).colorScheme.onBackground,
+      backgroundColor: Theme.of(context).colorScheme.background,
+      
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Notizen',
-          backgroundColor: Colors.grey,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.add_task_outlined),
-          label: 'Aufgabe',
-          backgroundColor: Colors.grey,
+          label: 'Aufgabe'
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'Einstellungen',
-          backgroundColor: Colors.grey,
         ),
       ],
       currentIndex: _selectedIndex,
+      selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
       onTap: _onItemTapped,
     );
   }

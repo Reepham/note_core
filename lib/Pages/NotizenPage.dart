@@ -18,13 +18,13 @@ class _NotizenState extends State<Notizen> {
   @override
   void initState() {
     super.initState();
-    _data=getNotes();     
+    _data = getNotes();
   }
 
   late Future<List<Note>> _data;
 
   Future<List<Note>> getNotes() async {
-    return  await DatabaseProvider.db.getNotes();
+    return await DatabaseProvider.db.getNotes();
   }
 
   @override
@@ -44,20 +44,24 @@ class _NotizenState extends State<Notizen> {
                     int id = snapshot.data![index].id;
                     String title = snapshot.data![index].title;
                     String content = snapshot.data![index].content;
-                    DateTime creationDate =
-                        snapshot.data![index].creationDate;
+                    DateTime creationDate = snapshot.data![index].creationDate;
                     Note note = Note(
                         id: id,
                         title: title,
                         content: content,
-                        creationDate: creationDate
-                        );
-                    return NoteCard(() {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => NotizenEditor(note))).then((_) => setState(() { _data=getNotes();}));
-                    }, note);
+                        creationDate: creationDate);
+                    return NoteCard(
+                        onTap: () {
+                          Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          NotizenEditor(note)))
+                              .then((_) => setState(() {
+                                    _data = getNotes();
+                                  }));
+                        },
+                        doc: note);
                   },
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
@@ -70,9 +74,14 @@ class _NotizenState extends State<Notizen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const NotizenNew())).then((_) => setState(() { _data=getNotes();}));
+                  MaterialPageRoute(builder: (context) => const NotizenNew()))
+              .then((_) => setState(() {
+                    _data = getNotes();
+                  }));
         },
         tooltip: 'Neue Notiz',
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
         child: const Icon(Icons.add),
       ),
       bottomNavigationBar: const HomeBottomBar(),

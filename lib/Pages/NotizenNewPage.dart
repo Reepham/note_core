@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'package:flutter/material.dart';
 import 'package:HaniNotes/Models/Note.dart';
 import 'package:HaniNotes/Models/Date.dart';
@@ -11,7 +13,7 @@ class NotizenNew extends StatefulWidget {
 
 class _NotizenNewState extends State<NotizenNew> {
   final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _mainController = TextEditingController();
+  final QuillController _quillcontroller = QuillController.basic();
   DateTime date = DateTime.now();
 
   @override
@@ -23,6 +25,11 @@ class _NotizenNewState extends State<NotizenNew> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            QuillToolbar.basic(
+                controller: _quillcontroller,
+                multiRowsDisplay: false,
+                showSubscript: false,
+                showSuperscript: false),
             TextField(
               controller: _titleController,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -33,13 +40,11 @@ class _NotizenNewState extends State<NotizenNew> {
             Text(Date.getDate(date).toString()),
             const SizedBox(height: 8),
             Expanded(
-                child: TextField(
-              controller: _mainController,
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              decoration: const InputDecoration(
-                  border: InputBorder.none, hintText: "Notiz"),
-            ))
+              child: QuillEditor.basic(
+                controller: _quillcontroller,
+                readOnly: false, // true for view only mode
+              ),
+            )
           ],
         ),
       ),
@@ -48,11 +53,14 @@ class _NotizenNewState extends State<NotizenNew> {
           DatabaseProvider.db.addNewNote(Note(
               title: _titleController.text,
               creationDate: date,
-              content: _mainController.text));
+              content:
+                  jsonEncode(_quillcontroller.document.toDelta().toJson())));
 
           Navigator.pop(context);
         },
         tooltip: 'Notiz speichern',
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
         child: const Icon(Icons.save),
       ),
     );

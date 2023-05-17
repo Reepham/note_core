@@ -74,5 +74,10 @@ class DatabaseProvider {
           content: content,
           creationDate: DateTime.parse(creationDate));
     });
+    // //Falls mal alles gelöscht werden muss unteren Teil wieder einbauen
+    // for (var element in test) {
+    //   deleteNote(element);
+    // }
+    // return <Note>[];
   }
 }

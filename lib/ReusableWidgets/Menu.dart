@@ -11,7 +11,7 @@ class Menu{
                       (item) =>
                       DropdownMenuItem<CustomMenuItem>(
                         value: item,
-                        child: Menu.buildItem(item),
+                        child: Menu.buildItem(item,context),
                       ),
                 ),
               ],
@@ -24,20 +24,20 @@ class Menu{
               dropdownPadding: const EdgeInsets.symmetric(vertical: 6),
               dropdownDecoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
-                color: const Color.fromARGB(255, 32, 145, 238),
+                color: Theme.of(context).colorScheme.primaryContainer,
               ),
               dropdownElevation: 8,
               offset: const Offset(0, -4),
             );
   }
 
-  static Widget buildItem(CustomMenuItem item) {
+  static Widget buildItem(CustomMenuItem item,BuildContext context) {
     return Row(
       children: [
         Text(
           item.text,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimaryContainer,
           ),
         ),
         const SizedBox(
@@ -45,7 +45,7 @@ class Menu{
         ),
         Icon(
             item.icon,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onPrimaryContainer,
             size: 22
         ),
       ],

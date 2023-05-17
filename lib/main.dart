@@ -7,16 +7,22 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+ const MyApp({Key? key}) : super(key: key);
+ final MaterialColor _primarySwatch = Colors.red;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'HaniNotes',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        brightness: Brightness.light,
+        primarySwatch: _primarySwatch,
       ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: _primarySwatch,
+      ),
+      themeMode: ThemeMode.dark,
       home: const Notizen(title: 'HaniNotes'),
     );
   }
