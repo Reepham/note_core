@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hannemann.family.note_core">
    <application
-        android:label="note_core"
+        android:label="HaniNotes"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

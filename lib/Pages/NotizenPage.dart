@@ -6,15 +6,15 @@ import 'package:HaniNotes/ReusableWidgets/NoteCard.dart';
 import 'package:HaniNotes/db/database_provider.dart';
 import 'package:HaniNotes/ReusableWidgets/HomeBottomBar.dart';
 
-class Notizen extends StatefulWidget {
-  const Notizen({Key? key, required this.title}) : super(key: key);
+class NotizenPage extends StatefulWidget {
+  const NotizenPage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
-  State<Notizen> createState() => _NotizenState();
+  State<NotizenPage> createState() => _NotizenPageState();
 }
 
-class _NotizenState extends State<Notizen> {
+class _NotizenPageState extends State<NotizenPage> {
   @override
   void initState() {
     super.initState();
@@ -41,15 +41,7 @@ class _NotizenState extends State<Notizen> {
               ? GridView.builder(
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
-                    int id = snapshot.data![index].id;
-                    String title = snapshot.data![index].title;
-                    String content = snapshot.data![index].content;
-                    DateTime creationDate = snapshot.data![index].creationDate;
-                    Note note = Note(
-                        id: id,
-                        title: title,
-                        content: content,
-                        creationDate: creationDate);
+                    Note note = snapshot.data![index];
                     return NoteCard(
                         onTap: () {
                           Navigator.push(

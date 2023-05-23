@@ -1,6 +1,6 @@
 {
-    "name": "note_core",
-    "short_name": "note_core",
+    "name": "HaniNotes",
+    "short_name": "HaniNotes",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
