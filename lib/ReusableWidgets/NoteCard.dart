@@ -15,11 +15,6 @@ class NoteCard extends StatelessWidget {
     selection: const TextSelection.collapsed(offset: 0),
   );
 
-  QuillEditor _createQuillPreview(QuillController controller) {
-    var preview = QuillEditor.basic(controller: controller, readOnly: true);
-    return preview;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(

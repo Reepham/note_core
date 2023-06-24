@@ -1,5 +1,6 @@
 
 import 'package:HaniNotes/Provider/ThemeChanger.dart';
+import 'package:HaniNotes/main.dart';
 import 'package:flutter/material.dart';
 import 'package:HaniNotes/ReusableWidgets/HomeBottomBar.dart';
 import 'package:provider/provider.dart';
@@ -15,13 +16,16 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
 
-  Future<void> _saveSetting(ThemeData setting) async {
+  Future<void> _saveSetting(ThemeData themeData,Color seedColor) async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      prefs.setInt('brightness', setting.brightness.index);
-      prefs.setInt('color', setting.primaryColor.value);
+      prefs.setInt('brightness', themeData.brightness.index);
+      prefs.setInt('color', seedColor.value);
     });
+    
   }
+
+
 
 
   @override
@@ -39,8 +43,9 @@ class _SettingsPageState extends State<SettingsPage> {
               title: const Text("Dark Mode"),
               subtitle: const Text("Aktiviert den dunklen Modus"),
               onTap: () {
-                themeChanger.setTheme(ThemeData.dark());
-                _saveSetting(themeChanger.getTheme());
+                ThemeData newTheme=ThemeData(colorSchemeSeed: themeChanger.getSeedColor(),brightness: Brightness.dark);
+                themeChanger.setTheme(newTheme,themeChanger.getSeedColor());
+                _saveSetting(newTheme,themeChanger.getSeedColor());
               },
             )
           ),
@@ -50,8 +55,9 @@ class _SettingsPageState extends State<SettingsPage> {
               title: const Text("Light Mode"),
               subtitle: const Text("Aktiviert den hellen Modus"),
               onTap: () {
-                themeChanger.setTheme(ThemeData.light());
-                _saveSetting(themeChanger.getTheme());
+                ThemeData newTheme=ThemeData(colorSchemeSeed: themeChanger.getSeedColor(),brightness: Brightness.light);
+                themeChanger.setTheme(newTheme,themeChanger.getSeedColor());
+                _saveSetting(newTheme,themeChanger.getSeedColor());
               },
             )
           ),

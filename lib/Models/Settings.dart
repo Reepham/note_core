@@ -9,3 +9,13 @@ class Settings {
     required this.brightness,
   });
 }
+
+class CustomThemeData {
+  Color seedColor;
+  ThemeData generatedTheme;
+  
+  CustomThemeData({
+    required this.seedColor,
+    required this.generatedTheme,
+  });
+}
