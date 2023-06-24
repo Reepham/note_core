@@ -21,12 +21,8 @@ class _SettingsPageState extends State<SettingsPage> {
     setState(() {
       prefs.setInt('brightness', themeData.brightness.index);
       prefs.setInt('color', seedColor.value);
-    });
-    
+    }); 
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {

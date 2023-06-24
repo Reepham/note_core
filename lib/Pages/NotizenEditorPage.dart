@@ -99,8 +99,8 @@ class _NotizenEditorState extends State<NotizenEditor> {
           Navigator.pop(context);
         },
         tooltip: 'Notiz speichern',
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        // foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
         child: const Icon(Icons.save),
       ),
     );
