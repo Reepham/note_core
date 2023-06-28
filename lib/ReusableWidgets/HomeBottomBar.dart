@@ -52,9 +52,6 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
     indexChanger = Provider.of<BottomMenuChanger>(context);
     _selectedIndex = indexChanger.getIndex();
     return BottomNavigationBar(
-      // selectedItemColor: Theme.of(context).colorScheme.onBackground,
-      // unselectedItemColor: Theme.of(context).colorScheme.onBackground,
-      // backgroundColor: Theme.of(context).primaryColor,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),

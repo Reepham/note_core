@@ -72,8 +72,6 @@ class _NotizenPageState extends State<NotizenPage> {
                   }));
         },
         tooltip: 'Neue Notiz',
-        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        // foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
         child: const Icon(Icons.add),
       ),
       bottomNavigationBar: const HomeBottomBar(),

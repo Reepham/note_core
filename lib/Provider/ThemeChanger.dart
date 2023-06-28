@@ -7,8 +7,8 @@ class ThemeChanger with ChangeNotifier{
   Color _seedColor;
   ThemeChanger(this._themeData,this._seedColor);
 
-  getTheme() => _themeData;
-  getSeedColor() => _seedColor;
+  ThemeData getTheme() => _themeData;
+  Color getSeedColor() => _seedColor;
   setTheme (ThemeData theme,Color seed) {
     _themeData = theme;
     _seedColor = seed;
