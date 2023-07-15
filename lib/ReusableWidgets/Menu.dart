@@ -20,11 +20,10 @@ class Menu{
               },
               itemHeight: 48,
               itemPadding: const EdgeInsets.only(left: 16, right: 16),
-              dropdownWidth: 130,
+              dropdownWidth: 160,
               dropdownPadding: const EdgeInsets.symmetric(vertical: 6),
               dropdownDecoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
-                color: Theme.of(context).colorScheme.primaryContainer,
               ),
               dropdownElevation: 8,
               offset: const Offset(0, -4),
@@ -36,9 +35,6 @@ class Menu{
       children: [
         Text(
           item.text,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
-          ),
         ),
         const SizedBox(
           width: 10,

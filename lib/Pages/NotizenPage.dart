@@ -1,3 +1,5 @@
+import 'package:HaniNotes/Models/WidgetModels/CustomMenuItem.dart';
+import 'package:HaniNotes/ReusableWidgets/Menu.dart';
 import 'package:flutter/material.dart';
 import 'package:HaniNotes/Models/Note.dart';
 import 'package:HaniNotes/Pages/NotizenEditorPage.dart';
@@ -15,11 +17,52 @@ class NotizenPage extends StatefulWidget {
 }
 
 class _NotizenPageState extends State<NotizenPage> {
+  List<CustomMenuItem> menuItems = <CustomMenuItem>[];
   @override
   void initState() {
     super.initState();
     _data = getNotes();
+
+    menuItems = [
+      CustomMenuItem(
+          onTap: ()=>{
+            
+          }, text: 'Daten\nExportieren', icon: Icons.upload_file),
+      CustomMenuItem(
+          onTap: ()=>{
+            
+          }, text: 'Daten\nImportieren', icon: Icons.download),
+      CustomMenuItem(
+          onTap: ()=>{
+            showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Appinfos'),
+                      content: const Text(
+                      """
+Ersteller der App:\n
+Timo Hannemann\n
+Version:\n
+0.3 Beta
+                      """),
+                      actions: <Widget>[
+                        ElevatedButton(
+                          child: const Text('Fertig!'),
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pop(); //dismiss the color picker
+                          },
+                        ),
+                      ],
+                    );
+                  })
+            
+          }, text: 'Info', icon: Icons.info),
+    ];
+
   }
+
 
   late Future<List<Note>> _data;
 
@@ -31,8 +74,13 @@ class _NotizenPageState extends State<NotizenPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-      ),
+          title: Row(
+        children: [
+          Expanded(child: Text(widget.title)),
+          Menu.generate(
+              context, const Icon(Icons.menu, color: Colors.white), menuItems)
+        ],
+      )),
       body: FutureBuilder<List>(
         future: _data,
         initialData: const <Note>[],
